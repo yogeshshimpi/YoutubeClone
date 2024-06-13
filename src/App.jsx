@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
-import Hero from './components/Main/hero'
+import Hero from './components/Main/Hero'
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <body>
-        <Navbar/>
+          <Navbar/>
         <section className="main">
           <Hero/>
         </section>

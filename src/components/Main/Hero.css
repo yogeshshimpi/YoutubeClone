@@ -1,0 +1,13 @@
+section{
+    display: flex;
+    width: 100%;    
+    position: fixed;
+}
+aside{
+    width: 230px;
+}
+main{
+    height: 40px;
+    border: 1px solid white;
+    width: calc(100vw - 230px);
+}
