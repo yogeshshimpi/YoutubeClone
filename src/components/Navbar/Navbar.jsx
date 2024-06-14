@@ -2,7 +2,7 @@ import  {  useState } from "react";
 import "./Navbar.css";
 import { Button, ButtonGroup } from "@mui/material";
 
-const Navbar = () => {
+const Navbar = ({setuploadvideo,uploadvideo}) => {
   const [inputvalue,setinputvalue] = useState('')
   const [checkclear,setcheckclear] = useState(false)
   const [searchicon,setsearchicon] = useState(false)
@@ -34,7 +34,7 @@ const Navbar = () => {
       <nav>
         <div className="menu">
           <img className="svg" src="src\assets\menu.svg" alt="" />
-          <img className="youtubelogo" src="src\assets\youtubelivelogo.webp" alt="" />
+          <img className="youtubelogo"  src="src\assets\youtubelivelogo.webp" alt="" />
         </div>
         <div className="inputfield">
           <ButtonGroup style={{height: '40px',borderRadius:'20px',overflow:'hidden'}}  variant="contained" >
@@ -51,8 +51,8 @@ const Navbar = () => {
           <button className="mic"><img  src="src\assets\mic.svg" alt="" /></button>
         </div>
         <div className="detail">
-          <img className="svg" src="src\assets\createvideo.svg" alt="" />
-          <img className="svg" src="src\assets\notification.svg" alt="" />
+          <button  onClick={()=>setuploadvideo(!uploadvideo )} className="mic"><img className="svg" src="src\assets\createvideo.svg" alt="" /></button>
+          <img className="svg" src="src\assets\notification.svg"  alt="" />
           <img src="" alt="" />
         </div>
       </nav>
