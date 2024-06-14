@@ -1,9 +1,19 @@
-import React from "react";
+import { useRef, useState } from "react";
 import "./uploadvideo.css";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { colors } from "@mui/material";
-const Uploadvideo = ({setuploadvideo,uploadvideo}) => {
+const Uploadvideo =  ({setuploadvideo,uploadvideo}) => {
+  const fileInput = useRef(null);
+  const [files,setfiles] = useState([])
+  const handleFileChage =  (event)=>{
+      const selectfile = event.target.files[0]
+        // setfiles(selectfile)
+    console.log(selectfile)
+    setfiles({filename: selectfile.name,filesize:selectfile.file,filetime:selectfile.lastModifiedDate})
+   console.log(files[0])
+  }
+  const handlebutton = ()=>{
+    fileInput.current.click() 
+  }
   return (
     <>
       <section className="upload">
@@ -12,7 +22,7 @@ const Uploadvideo = ({setuploadvideo,uploadvideo}) => {
             <h1>Upload videos</h1>
             <div className="close-send">
               <img src="src\assets\Send feedback.svg" alt="" />
-              <button onClick={()=>setuploadvideo(!uploadvideo)} style={{backgroundColor:"transparent"}} ><img src="src\assets\cleartext.svg" alt="" /></button>
+              <button onClick={()=> setuploadvideo(!uploadvideo)} style={{backgroundColor:"transparent"}} ><img src="src\assets\cleartext.svg" alt="" /></button>
             </div>
           </div>
           <div className="hero">
@@ -21,6 +31,7 @@ const Uploadvideo = ({setuploadvideo,uploadvideo}) => {
             <span className="text2">
               Your videos will be private until you publish them.
             </span>
+            <input type="file" ref={fileInput} style={{display:'none'}} onChange={handleFileChage} />
             <Button
               style={{
                 backgroundColor: "#3EA6FF",
@@ -30,15 +41,16 @@ const Uploadvideo = ({setuploadvideo,uploadvideo}) => {
                 fontWeight: "600",
                 borderRadius: "3px",
               }}
+              onClick={handlebutton}
               variant="contained">
-              SELECT FILES
+              SELECT FILESh
             </Button>
             <p>
               By submitting your videos to YouTube, you acknowledge that you
-              agree to YouTube's
+              agree to YouTube s
               <span>Terms of Service</span> and{" "}
               <span>Community Guidelines</span>. Please make sure that you do
-              not violate others' copyright or privacy rights.{" "}
+              not violate others  copyright or privacy rights.{" "}
               <span>Learn more</span>
             </p>
           </div>
