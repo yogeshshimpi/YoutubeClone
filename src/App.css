@@ -1,11 +1,11 @@
 body{
-  background-color: #0f0f0f;
-  z-index: 0;
+  background-color: #0f0f0f !important;
 }
 #uploadvideo{
     position: absolute;
     display: none;
     /* margin: 0vh 15vw; */
+  background-color: #0f0f0f;
     top: 0;
     left:  0;
     /* z-index: 2;   */

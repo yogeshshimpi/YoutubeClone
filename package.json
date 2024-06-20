@@ -8,15 +8,19 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "host":"vite --host"
+    "host": "vite --host"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.15.19",
+    "@mui/icons-material": "^5.15.20",
+    "@mui/material": "^5.15.20",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "bootstrap": "^5.3.3",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.1",
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
