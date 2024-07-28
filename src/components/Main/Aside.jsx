@@ -21,7 +21,7 @@ const Aside = () => {
         YouTube Music
       </button>
       <span className="span"></span>
-      <button className="option">You ></button>
+      <button className="option">You</button>
       <button className="option">
         <img className='svg' src="src\assets\Your channel.svg" alt="" />
         Your channel

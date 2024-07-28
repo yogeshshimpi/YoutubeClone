@@ -55,7 +55,7 @@ const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
               </button>
             </div>
           </div>
-          <div className="hero" style={{ display: tab ? "none" : "" }}>
+          <div className="hero" style={{ display: tab ? "" : "none" }} >
             <img className="uploadimg" src="src\assets\uploadpng.png" alt="" />
             <span className="text1">Drag and drop video files to upload</span>
             <span className="text2">
