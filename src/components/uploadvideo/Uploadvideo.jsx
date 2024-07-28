@@ -1,21 +1,17 @@
-import { useRef, useState } from "react";
+import { lazy, useRef, useState ,Suspense} from "react";
 import "./uploadvideo.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { TextField ,IconButton} from "@mui/material";
-
+const Details = lazy(()=>import("./details"));
 
 
 const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
-  const [titlecolor,settitlecolor] = useState(false)
-  const [descriptionlength,setdescriptionlength] = useState(0)
-  const [descriptioncolor,setdescriptioncolor] = useState(false)
-  const [titlelength,settitlelength] = useState(0)
   const [tab, settab] = useState(true);
   const fileInput = useRef(null);
   const [files, setfiles] = useState([]);
   const [isActive, TabisActive] = useState("Tab1");
+  const [scroll,setscroll] = useState(false)
+
   const handleFileChage = (event) => {
     const selectfile = event.target.files[0];
     // setfiles(selectfile)
@@ -35,24 +31,21 @@ const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
   const handleTabClick = (tab) => {
     TabisActive(tab);
   };
-const disptitlecolor=()=>{
-  settitlecolor(true)
-}
-const hidetitlecolor=()=>{
-  settitlecolor(false)
-}
-const dispdescriptioncolor=()=>{
-  setdescriptioncolor(true)
-}
-const hidedescriptioncolor=()=>{
-  setdescriptioncolor(false)
-}
+
+  const handlescroll = (event) => {
+    const scrollTop = event.target.scrollTop;
+    if (scrollTop > 0) {
+      setscroll(true)
+    }else{
+      setscroll(false)
+    }
+  };
   return (
     <>
       <section className="upload">
         <section className="uploadvideo">
           <div className="heading">
-            <h1 style={{fontSize:'large'}}>Upload videos</h1>
+            <h1 style={{ fontSize: "large" }}>Upload videos</h1>
             <div className="close-send">
               <img src="src\assets\Send feedback.svg" alt="" />
               <button
@@ -101,6 +94,7 @@ const hidedescriptioncolor=()=>{
                 width: "100%",
                 display: "flex",
                 justifyContent: "space-evenly",
+                boxShadow:scroll?'rgb(2 2 2 / 10%) 0px 2px 6px':''
               }}
               direction="row">
               <Button
@@ -132,79 +126,8 @@ const hidedescriptioncolor=()=>{
                 Visibility
               </Button>
             </Stack>
-            <div className="tabcontent">
-              {isActive === "Tab1" && (
-                <div className="left-side">
-                  <div className="details">
-                    Details <span>REUSE DETAILS</span>
-                  </div>
-                    <div className="form-title" style={{borderColor: titlecolor ? '#3EA6FF' : '#6A6A6A'}}>
-                      <div className="label-text">
-                        <span className="label" style={{color: titlecolor ? '#3EA6FF' : '#6A6A6A'}}>Title (required)</span>
-                      </div>
-                      <TextField
-                    id="outlined-multiline-flexible"
-                    variant="standard"
-                    multiline
-                    onChange={(e)=>{settitlelength(e.target.value.length)}}
-                    placeholder="Add a title that describes your (type @ to mention a channel)"
-                    InputProps={{
-                      style: { color: "white",fontSize:'14px',}
-                    }}
-                    inputProps={{maxlength:100}}
-                    
-                    sx={{
-                      background: "transparent",
-                      "& .MuiInput-underline:before": {
-                        borderBottom: "none",
-                      },
-                      "& .MuiInput-underline:after": {
-                        borderBottom: "none",
-                      },
-                      "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-                        borderBottom: "none",
-                      },
-                    }}
-                    onFocus={disptitlecolor}
-                    onBlur={hidetitlecolor}
-                  />
-                  <span className="title-limit">{titlecolor ?`${titlelength}/100`:''}</span>
-                    </div>
-
-                    <div className="form-description"  style={{borderColor: descriptioncolor ? '#3EA6FF' : '#6A6A6A'}}>
-                    <div className="label-text">
-                        <span className="label" style={{color: descriptioncolor ? '#3EA6FF' : '#6A6A6A'}}>description</span>
-                      </div>
-                      <TextField
-                    id="outlined-multiline-flexible"
-                    variant="standard"
-                    multiline
-                    onChange={(e)=>{setdescriptionlength(e.target.value.length)}}
-                    InputProps={{
-                      style: { color: "white",fontSize:'14px',}
-                    }}
-                    inputProps={{maxlength:5000}}
-                    
-                    sx={{
-                      background: "transparent",
-                      "& .MuiInput-underline:before": {
-                        borderBottom: "none",
-                      },
-                      "& .MuiInput-underline:after": {
-                        borderBottom: "none",
-                      },
-                      "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-                        borderBottom: "none",
-                      },
-                    }}
-                    minRows={4}
-                    onFocus={dispdescriptioncolor}
-                    onBlur={hidedescriptioncolor}
-                  />
-                  <span className="title-limit">{descriptioncolor ?`${descriptionlength}/5000`:''}</span>
-                    </div>
-                </div>
-              )}
+            <div className="tabcontent" onScroll={handlescroll}>
+              <Suspense fallback={<div>Loading...</div>} >{isActive === "Tab1" && ( <Details/>)}</Suspense>
             </div>
           </div>
         </section>

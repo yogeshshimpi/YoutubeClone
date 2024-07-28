@@ -1,6 +1,7 @@
 import  {  useState } from "react";
 import "./Navbar.css";
-import { Button, ButtonGroup } from "@mui/material";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 const Navbar = ({setuploadvideo,uploadvideo}) => {
   const [inputvalue,setinputvalue] = useState('')
@@ -33,8 +34,8 @@ const Navbar = ({setuploadvideo,uploadvideo}) => {
     <>
       <nav>
         <div className="menu">
-          <img className="svg" src="src\assets\menu.svg" alt="" />
-          <img className="youtubelogo"  src="src\assets\youtubelivelogo.webp" alt="" />
+          <img className='svg' src="src\assets\menu.svg"  alt="" />
+          <img className="youtubelogo" width='100' height='27'  src="src\assets\youtubelivelogo.svg" alt="" />
         </div>
         <div className="inputfield">
           <ButtonGroup style={{height: '40px',borderRadius:'20px',overflow:'hidden'}}  variant="contained" >

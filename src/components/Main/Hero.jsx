@@ -1,14 +1,14 @@
-import React from "react";
-import Aside from "./Aside";
-import Video from "./Video";
+import {lazy,Suspense} from "react";
+const Aside = lazy(()=>import("./Aside"));
+const  Video = lazy(()=>import("./Video"));
 import "./Hero.css"
 
 const Hero = () => {
   return (
     <>
       <section>
-        <aside ><Aside /></aside>
-        <main><Video /></main>
+        <aside ><Suspense fallback={<div>Loading...</div>}><Aside /></Suspense></aside>
+        <main><Suspense fallback={<div>Loading...</div>}><Video /></Suspense></main>
       </section>
     </>
   );

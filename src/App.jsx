@@ -1,20 +1,26 @@
-import { useState } from 'react'
+import { useState ,lazy,Suspense} from 'react'
 import './App.css'
-import Navbar from './components/Navbar/Navbar'
-import Hero from './components/Main/Hero'
-import Uploadvideo from './components/Navbar/Uploadvideo'
+
+const Navbar = lazy(()=>import('./components/Navbar/Navbar'))
+const Hero = lazy(()=>import('./components/Main/Hero'))
+const Uploadvideo = lazy(()=>import('./components/uploadvideo/Uploadvideo'))
 function App() {
+
   
   const [uploadvideo,setuploadvideo] = useState(false)  
   return (
     <>
       <body>
-          <Navbar setuploadvideo={setuploadvideo} uploadvideo={uploadvideo}/>
+      <Suspense fallback={<div>Loading...</div>}> <Navbar setuploadvideo={setuploadvideo} uploadvideo={uploadvideo}/></Suspense>
+
+         
         <section className="main">
-          <Hero/>
+          <Suspense fallback={<div>Loading...</div>}><Hero/></Suspense>
         </section>
         <section style={{display: uploadvideo?'block':'none'}} id='uploadvideo' >
+          <Suspense fallback={<div>Loading...</div>}>
           <Uploadvideo setuploadvideo={setuploadvideo} uploadvideo={uploadvideo}/>
+          </Suspense>
         </section>
       </body>
     </>
