@@ -22,7 +22,7 @@ const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
       filetime: selectfile.lastModifiedDate,
     });
     console.log(files[0]);
-    settab(true);
+    settab(!tab);
   };
   const handlebutton = () => {
     fileInput.current.click();
@@ -88,7 +88,7 @@ const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
               <span>Learn more</span>
             </p>
           </div>
-          <div style={{ display: tab ? "" : "none" }} className="videodetail">
+          <div style={{ display: !tab ? "" : "none" }} className="videodetail">
             <Stack
               style={{
                 width: "100%",
