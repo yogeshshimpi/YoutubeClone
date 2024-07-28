@@ -47,16 +47,16 @@ const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
           <div className="heading">
             <h1 style={{ fontSize: "large" }}>Upload videos</h1>
             <div className="close-send">
-              <img src="src\assets\Send feedback.svg" alt="" />
+              <img src="public\assets\Send feedback.svg" alt="" />
               <button
                 onClick={() => setuploadvideo(!uploadvideo)}
                 style={{ backgroundColor: "transparent" }}>
-                <img src="src\assets\cleartext.svg" alt="" />
+                <img src="public\assets\cleartext.svg" alt="" />
               </button>
             </div>
           </div>
           <div className="hero" style={{ display: tab ? "" : "none" }} >
-            <img className="uploadimg" src="src\assets\uploadpng.png" alt="" />
+            <img className="uploadimg" src="public\assets\uploadpng.png" alt="" />
             <span className="text1">Drag and drop video files to upload</span>
             <span className="text2">
               Your videos will be private until you publish them.
