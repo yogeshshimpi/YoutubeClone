@@ -10,7 +10,7 @@ function App() {
   const [uploadvideo,setuploadvideo] = useState(false)  
   return (
     <>
-      <body>
+      
       <Suspense fallback={<div>Loading...</div>}> <Navbar setuploadvideo={setuploadvideo} uploadvideo={uploadvideo}/></Suspense>
 
          
@@ -22,7 +22,7 @@ function App() {
           <Uploadvideo setuploadvideo={setuploadvideo} uploadvideo={uploadvideo}/>
           </Suspense>
         </section>
-      </body>
+      
     </>
   )
 }

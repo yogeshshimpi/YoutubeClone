@@ -1,29 +1,30 @@
-import { lazy, useRef, useState ,Suspense} from "react";
+import { lazy, useRef, useState, Suspense } from "react";
 import "./uploadvideo.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-const Details = lazy(()=>import("./details"));
+import sendFeedback from "../../assets/Send feedback.svg";
+import clearText from "../../assets/cleartext.svg";
+import uploadPng from "../../assets/uploadpng.png";
 
+const Details = lazy(() => import("./details"));
 
 const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
   const [tab, settab] = useState(true);
   const fileInput = useRef(null);
   const [files, setfiles] = useState([]);
   const [isActive, TabisActive] = useState("Tab1");
-  const [scroll,setscroll] = useState(false)
+  const [scroll, setscroll] = useState(false);
 
   const handleFileChage = (event) => {
     const selectfile = event.target.files[0];
-    // setfiles(selectfile)
-    console.log(selectfile);
     setfiles({
       filename: selectfile.name,
       filesize: selectfile.file,
       filetime: selectfile.lastModifiedDate,
     });
-    console.log(files[0]);
     settab(!tab);
   };
+
   const handlebutton = () => {
     fileInput.current.click();
   };
@@ -35,11 +36,12 @@ const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
   const handlescroll = (event) => {
     const scrollTop = event.target.scrollTop;
     if (scrollTop > 0) {
-      setscroll(true)
-    }else{
-      setscroll(false)
+      setscroll(true);
+    } else {
+      setscroll(false);
     }
   };
+
   return (
     <>
       <section className="upload">
@@ -47,16 +49,17 @@ const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
           <div className="heading">
             <h1 style={{ fontSize: "large" }}>Upload videos</h1>
             <div className="close-send">
-              <img src="public\assets\Send feedback.svg" alt="" />
+              <img src={sendFeedback} alt="Send feedback" />
               <button
                 onClick={() => setuploadvideo(!uploadvideo)}
-                style={{ backgroundColor: "transparent" }}>
-                <img src="public\assets\cleartext.svg" alt="" />
+                style={{ backgroundColor: "transparent" }}
+              >
+                <img src={clearText} alt="Clear" />
               </button>
             </div>
           </div>
-          <div className="hero" style={{ display: tab ? "" : "none" }} >
-            <img className="uploadimg" src="public\assets\uploadpng.png" alt="" />
+          <div className="hero" style={{ display: tab ? "" : "none" }}>
+            <img className="uploadimg" src={uploadPng} alt="Upload" />
             <span className="text1">Drag and drop video files to upload</span>
             <span className="text2">
               Your videos will be private until you publish them.
@@ -77,14 +80,15 @@ const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
                 borderRadius: "3px",
               }}
               onClick={handlebutton}
-              variant="contained">
+              variant="contained"
+            >
               SELECT FILES
             </Button>
             <p>
               By submitting your videos to YouTube, you acknowledge that you
-              agree to YouTube s<span>Terms of Service</span> and{" "}
+              agree to YouTube's <span>Terms of Service</span> and{" "}
               <span>Community Guidelines</span>. Please make sure that you do
-              not violate others copyright or privacy rights.{" "}
+              not violate others' copyright or privacy rights.{" "}
               <span>Learn more</span>
             </p>
           </div>
@@ -94,40 +98,47 @@ const Uploadvideo = ({ setuploadvideo, uploadvideo }) => {
                 width: "100%",
                 display: "flex",
                 justifyContent: "space-evenly",
-                boxShadow:scroll?'rgb(2 2 2 / 10%) 0px 2px 6px':''
+                boxShadow: scroll ? "rgb(2 2 2 / 10%) 0px 2px 6px" : "",
               }}
-              direction="row">
+              direction="row"
+            >
               <Button
                 onClick={() => handleTabClick("Tab1")}
                 style={{ width: "130px", color: "white" }}
                 sx={{ "&:hover": { backgroundColor: "#3ea5ff47" } }}
-                variant="text">
+                variant="text"
+              >
                 Details
               </Button>
               <Button
                 onClick={() => handleTabClick("Tab2")}
                 style={{ width: "130px", color: "white" }}
                 sx={{ "&:hover": { backgroundColor: "#3ea5ff47" } }}
-                variant="text">
+                variant="text"
+              >
                 Video elements
               </Button>
               <Button
                 onClick={() => handleTabClick("Tab3")}
                 style={{ width: "130px", color: "white" }}
                 sx={{ "&:hover": { backgroundColor: "#3ea5ff47" } }}
-                variant="text">
+                variant="text"
+              >
                 Checks
               </Button>
               <Button
                 onClick={() => handleTabClick("Tab4")}
                 style={{ width: "130px", color: "white" }}
                 sx={{ "&:hover": { backgroundColor: "#3ea5ff47" } }}
-                variant="text">
+                variant="text"
+              >
                 Visibility
               </Button>
             </Stack>
             <div className="tabcontent" onScroll={handlescroll}>
-              <Suspense fallback={<div>Loading...</div>} >{isActive === "Tab1" && ( <Details/>)}</Suspense>
+              <Suspense fallback={<div>Loading...</div>}>
+                {isActive === "Tab1" && <Details />}
+              </Suspense>
             </div>
           </div>
         </section>

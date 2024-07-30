@@ -145,6 +145,9 @@ color: #1F1F1F;
 }
 .tags-section{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
 }
 .tags-input{
     width: 100%;
@@ -182,4 +185,10 @@ color: #1F1F1F;
 .material-symbols-outlined:hover{
     color: white;
     border-color: white;
+}
+.language_caption{
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
 }

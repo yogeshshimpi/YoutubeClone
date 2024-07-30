@@ -9,6 +9,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
+import Box from '@mui/material/Box';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import AutoAwesomeOutlinedIcon from "@mui/icons-material/AutoAwesomeOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
@@ -21,9 +26,9 @@ const Details = () => {
   const [titlelength, settitlelength] = useState(0);
   const [age_registration, setage_registration] = useState(false);
   const [extra_detail, setextra_detail] = useState(true);
-  const [input,setinput] = useState('')
-  const [tags,settag] = useState([])
-  const [tag_color,settag_color] = useState(false)
+  const [input, setinput] = useState("");
+  const [tags, settag] = useState([]);
+  const [tag_color, settag_color] = useState(false);
 
   const disptitlecolor = () => {
     settitlecolor(true);
@@ -43,22 +48,24 @@ const Details = () => {
   const handle_extra_detail = (value) => {
     setextra_detail(value);
   };
-  const handlekeydown=(e)=>{
-    if(e.key === 'Enter'){
-      console.log(tags)
-    settag([...tags,input.trim()])
-    setinput('')
-  } if (e.key === 'Backspace') {
-      if(input.length <= 0){
-       removetag(tags.length-1)
+  const handlekeydown = (e) => {
+    if (e.key === "Enter") {
+      console.log(tags);
+      settag([...tags, input.trim()]);
+      setinput("");
+    }
+    if (e.key === "Backspace") {
+      if (input.length <= 0) {
+        removetag(tags.length - 1);
       }
-    }}
-  const removetag = (index)=>{
-    settag(tags.filter((item, i) => i !== index))
-  }
-  const handletagcolor= ()=>{
-    settag_color(!tag_color)
-  }
+    }
+  };
+  const removetag = (index) => {
+    settag(tags.filter((item, i) => i !== index));
+  };
+  const handletagcolor = () => {
+    settag_color(!tag_color);
+  };
   return (
     <>
       <div className="left-side">
@@ -86,7 +93,7 @@ const Details = () => {
             InputProps={{
               style: { color: "white", fontSize: "14px" },
             }}
-            inputProps={{ maxlength: 100 }}
+            inputProps={{ maxLength: 100 }}
             sx={{
               background: "transparent",
               "& .MuiInput-underline:before": {
@@ -132,7 +139,7 @@ const Details = () => {
             InputProps={{
               style: { color: "white", fontSize: "14px" },
             }}
-            inputProps={{ maxlength: 5000 }}
+            inputProps={{ maxLength: 5000 }}
             sx={{
               background: "transparent",
               "& .MuiInput-underline:before": {
@@ -187,9 +194,7 @@ const Details = () => {
               Add your video to one or more playlists to organise your content
               for viewers. <span className="Mark">Learn more</span>
             </div>
-            <button
-              className="playlist-btn"
-              >
+            <button className="playlist-btn">
               Select
               <IconButton>
                 <KeyboardArrowDownOutlinedIcon />
@@ -202,11 +207,13 @@ const Details = () => {
               Is this video &apos;Made for Kids&apos;? (required)
             </span>
             <div className="description">
-              Regardless of your location, you&apos;re legally required to comply
-              with the Children&apos;s Online Privacy Protection Act (COPPA) and/or
-              other laws. You&apos;re required to tell us whether your videos are
-              &apos;Made for Kids&apos;.
-              <span className="Mark">What is &apos;Made for Kids&apos; content?</span>
+              Regardless of your location, you&apos;re legally required to
+              comply with the Children&apos;s Online Privacy Protection Act
+              (COPPA) and/or other laws. You&apos;re required to tell us whether
+              your videos are &apos;Made for Kids&apos;.
+              <span className="Mark">
+                What is &apos;Made for Kids&apos; content?
+              </span>
             </div>
             <div className="features">
               <IconButton>
@@ -216,9 +223,9 @@ const Details = () => {
                 className="features-text "
                 style={{ fontSize: "12px", color: "#6A6A6A" }}>
                 Features like personalised ads and notifications won&apos;t be
-                available on videos &apos;Made for Kids&apos;. Videos that are set as
-                &apos;Made for Kids&apos; by you are more likely to be recommended
-                alongside other children&apos;s videos.{" "}
+                available on videos &apos;Made for Kids&apos;. Videos that are
+                set as &apos;Made for Kids&apos; by you are more likely to be
+                recommended alongside other children&apos;s videos.{" "}
                 <span style={{ color: "#3EA6FF" }}>Learn more</span>
               </div>
             </div>
@@ -247,7 +254,9 @@ const Details = () => {
                 onClick={() => {
                   handleregistration(!age_registration);
                 }}>
-                <span style={{border:"none",fontSize:"20px"}} className="material-symbols-outlined">
+                <span
+                  style={{ border: "none", fontSize: "20px" }}
+                  className="material-symbols-outlined">
                   {age_registration
                     ? "keyboard_arrow_up"
                     : "keyboard_arrow_down"}
@@ -256,7 +265,8 @@ const Details = () => {
               </button>
               <div
                 className="age-registration"
-                style={{marginTop:"10px",
+                style={{
+                  marginTop: "10px",
                   display: age_registration ? "flex" : "none",
                   flexDirection: "column",
                   gap: "8px",
@@ -335,8 +345,8 @@ const Details = () => {
                     </li>
                     <li>Alters footage of a real event or place </li>
                     <li>
-                      Generates a realistic-looking scene that didn&apos;t actually
-                      occur
+                      Generates a realistic-looking scene that didn&apos;t
+                      actually occur
                     </li>
                   </ul>
                   <RadioGroup name="altered-content">
@@ -352,11 +362,11 @@ const Details = () => {
                     />
                   </RadioGroup>
                   <div className="description">
-                    To follow YouTube&apos;s policy, you&apos;re required to tell us if
-                    your content is altered or synthetic and seems real. This
-                    includes realistic sounds or visuals made with AI or other
-                    tools. Selecting &apos;Yes&apos; adds a label to your content.{" "}
-                    <span className="Mark">Learn more</span>
+                    To follow YouTube&apos;s policy, you&apos;re required to
+                    tell us if your content is altered or synthetic and seems
+                    real. This includes realistic sounds or visuals made with AI
+                    or other tools. Selecting &apos;Yes&apos; adds a label to
+                    your content. <span className="Mark">Learn more</span>
                   </div>
                 </div>
                 <div className="Automatic-chapters paragraph">
@@ -376,8 +386,8 @@ const Details = () => {
                   <div className="label">Featured places</div>
                   <div className="description">
                     Help viewers explore key places in your video. These are
-                    public places like restaurants and shops – we don &apos; t display
-                    your current location or other private info.
+                    public places like restaurants and shops – we don &apos; t
+                    display your current location or other private info.
                     <span className="Mark">Learn more</span>
                   </div>
                   <div className="label">
@@ -408,19 +418,57 @@ const Details = () => {
                     <span className="Mark">Learn more</span>
                   </div>
                   <div className="tags-section">
-                      <div className="tags-input" style={{borderColor:tag_color?'#3EA6FF':'#6A6A6A'}}>
-                       
-                       {tags.map((tag,index)=>(
-                        <span key={index} className="tag"><span>{tag}</span> <button className="material-symbols-outlined" onClick={()=>{removetag(index)}}>
-                        close
-                        </button></span>
-                       ))}
-                          
-                        <input type="text"  value={input}  onFocus={handletagcolor} onBlur={handletagcolor} onChange={(e)=>{setinput(e.target.value)}} onKeyDown={handlekeydown}/>
-                      </div>
+                    <div
+                      className="tags-input"
+                      style={{
+                        borderColor: tag_color ? "#3EA6FF" : "#6A6A6A",
+                      }}>
+                      {tags.map((tag, index) => (
+                        <span key={index} className="tag">
+                          <span>{tag}</span>{" "}
+                          <button
+                            className="material-symbols-outlined"
+                            onClick={() => {
+                              removetag(index);
+                            }}>
+                            close
+                          </button>
+                        </span>
+                      ))}
+
+                      <input
+                        type="text"
+                        value={input}
+                        onFocus={handletagcolor}
+                        onBlur={handletagcolor}
+                        onChange={(e) => {
+                          setinput(e.target.value);
+                        }}
+                        onKeyDown={handlekeydown}
+                      />
+                    </div>
                     <div className="description">
                       Enter a comma after each tag
                     </div>
+                  </div>
+                  <div className="language_caption">
+                    <div className="label">
+                      Language and captions certification
+                    </div>
+                    <div className="description">
+                      Select your video s language and, if needed, a caption
+                      certification
+                    </div>
+                    <Box><FormControl sx={{ m: 1, width: 300 }}>
+                      <InputLabel id="demo-multiple-checkbox-label">
+                        Tag
+                      </InputLabel>
+                      <Select
+                        labelId="demo-multiple-checkbox-label"
+                        id="demo-multiple-checkbox">
+                        <MenuItem>Ten</MenuItem>
+                      </Select>
+                    </FormControl></Box>
                   </div>
                 </div>
               </div>
